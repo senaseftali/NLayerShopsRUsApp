@@ -17,6 +17,12 @@ namespace NLayer.Repository
         }
 
         public DbSet<Category> Categories { get; set; }
+        public DbSet<Discount> Discouts { get; set; }
+        public DbSet<Order> Orders { get; set; }
+        public DbSet<OrderDetail> OrderDetails { get; set; }
+        public DbSet<Customer> Customers { get; set; }
+        public DbSet<CustomerType> CustomerTypes { get; set; }
+        public DbSet<CustomerCustomerType> CustomerCustomerTypes { get; set; }
 
         public DbSet<Product> Products { get; set; }
 
@@ -32,7 +38,7 @@ namespace NLayer.Repository
                 Color = "Kırmızı",
                 Height = 100,
                 Width = 200,
-                ProductId = 10
+                ProductId = 1
             },
             new ProductFeature()
             {
@@ -40,7 +46,7 @@ namespace NLayer.Repository
                 Color = "Mavi",
                 Height = 300,
                 Width = 500,
-                ProductId = 20
+                ProductId = 2
             });
 
             base.OnModelCreating(modelBuilder);

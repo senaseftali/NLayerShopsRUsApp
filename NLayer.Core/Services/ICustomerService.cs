@@ -5,10 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NLayer.Core.Repositories
+namespace NLayer.Core.Services
 {
-    public interface IProductRepository : IGenericRepository<Product>
+    public interface ICustomerService : IService<Customer>
     {
-        Task<List<Product>> GetProductsWitCategory();
     }
 }

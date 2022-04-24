@@ -8,7 +8,14 @@ namespace NLayer.Core.DTOs
 {
     public class InvoiceDto : BaseDto
     {
-        public int CustomerId { get; set; }
-        
+        public string CustomerName { get; set; }
+        public string CustomerEmail { get; set; }
+        public string CustomerTypeName { get; set; }
+        public DateTime CreatedDate { get; set; }
+        public decimal TotalAmount { get; set; }
+        public decimal DiscountAmount { get; set; }
+        public decimal Amount { get; set; }
+
+        public List<ProductDto> productDtos { get; set; }
     }
 }

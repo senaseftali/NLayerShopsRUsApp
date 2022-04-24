@@ -17,27 +17,27 @@ namespace NLayer.Repository.Seeds
             {
                 Id = 1,
                 OrderId = 1,
-                ProductId = new List<int> { 1,4,7}
+                ProductId =4
             
-            },
-            new OrderDetail
+            
+            }, new OrderDetail
             {
                 Id = 2,
                 OrderId = 2,
-                ProductId = new List<int> { 1,4,7,5}
+                ProductId = 7,
 
             },
            new OrderDetail
            {
                Id = 3,
                OrderId = 3,
-               ProductId = new List<int> { 2, 3,5 }
+               ProductId = 5
 
            }, new OrderDetail
            {
                Id = 4,
                OrderId = 4,
-               ProductId = new List<int> { 2, 2,7,4,3 }
+               ProductId = 3
 
            });
         }

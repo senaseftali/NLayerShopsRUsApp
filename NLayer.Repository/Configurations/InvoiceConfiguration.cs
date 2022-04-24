@@ -22,7 +22,7 @@ namespace NLayer.Repository.Configurations
 
             //builder.HasOne(x => x.CustomerTypes).WithMany(x => x.Customers);
             builder.HasOne(x => x.Customer).WithOne(x => x.Invoice).HasForeignKey<Invoice>(x => x.CustomerId);
-            builder.HasOne(x => x.Order).WithOne(x => x.Invoice).HasForeignKey<Invoice>(x => x.OrderId);
+            builder.HasOne(x => x.Order).WithOne(x => x.Invoice).HasForeignKey<Invoice>(x => x.OrderId).OnDelete(DeleteBehavior.NoAction);
             //builder.HasOne(x => x.Product).WithOne(x => x.ProductFeature).HasForeignKey<ProductFeature>(x => x.ProductId);
         }
     
