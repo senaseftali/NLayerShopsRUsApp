@@ -28,7 +28,7 @@ namespace NLayer.Repository.Seeds
                 Name = "Fatih",
                 LastName = "ŞEFTALİ",
                 Email = "seftali@gmail.com",
-                CustomerTypeId = 2,
+                CustomerTypeId = 4,
                 CreatedDate = DateTime.Now
             },
             new Customer

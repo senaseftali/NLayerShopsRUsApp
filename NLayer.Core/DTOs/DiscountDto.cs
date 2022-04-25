@@ -12,7 +12,9 @@ namespace NLayer.Core.DTOs
     }
     public class DiscountDto : BaseDto
     {
+
         public string CustomerTypeId { get; set; }
+        public string Name { get; set; }
         public double Rate { get; set; }
 
     }

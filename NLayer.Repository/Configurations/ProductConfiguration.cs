@@ -23,6 +23,7 @@ namespace NLayer.Repository.Configurations
             builder.ToTable("Products");
 
             builder.HasOne(x => x.Category).WithMany(x => x.Products).HasForeignKey(x => x.CategoryId);
+            //builder.HasOne(x => x.OrderDetail).WithMany(x => x.Products).HasForeignKey(x => x.OrderDetailId);
         }
     }
 }

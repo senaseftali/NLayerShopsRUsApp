@@ -35,6 +35,7 @@ namespace NLayer.Repository.Repositories
                                   CustomerTypeId = c.CustomerTypeId,
                                   CustomerTypeName = ct.Name,
                                   Rate = d.Rate,
+                                  DiscountTypeName=d.Name,
                                   productDtos = new List<ProductDto>
                           {
 

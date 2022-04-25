@@ -16,7 +16,7 @@ namespace NLayer.Repository.Seeds
             builder.HasData(new Discount
             {
                 Id = 1,
-                Name = "Percentage Discount",
+                Name = "Rate",
                 Rate=30,
                 CustomerTypeId=1,
                 CreatedDate = DateTime.Now
@@ -24,7 +24,7 @@ namespace NLayer.Repository.Seeds
             new Discount
             {
                 Id = 2,
-                Name = "Flat Discount",
+                Name = "Amount",
                 Rate = 5,
                 CustomerTypeId = 4,
                 CreatedDate = DateTime.Now
@@ -32,7 +32,7 @@ namespace NLayer.Repository.Seeds
             new Discount
             {
                 Id = 3,
-                Name = "Percentage Discount",
+                Name = "Rate",
                 Rate = 5,
                 CustomerTypeId = 3,
                 CreatedDate = DateTime.Now
@@ -40,7 +40,7 @@ namespace NLayer.Repository.Seeds
            new Discount
            {
                Id = 4,
-               Name = "Percentage Discount",
+               Name = "Rate",
                Rate = 10,
                CustomerTypeId = 2,
                CreatedDate = DateTime.Now

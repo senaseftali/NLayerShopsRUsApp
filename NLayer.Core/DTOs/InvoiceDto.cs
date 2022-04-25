@@ -17,6 +17,7 @@ namespace NLayer.Core.DTOs
         public decimal DiscountAmount { get; set; }
         public decimal Amount { get; set; }
         public decimal Rate { get; set; }
+        public string DiscountTypeName { get; set; }
 
         public List<ProductDto> productDtos { get; set; }
     }

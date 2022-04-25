@@ -15,9 +15,9 @@ namespace NLayer.Service.Services
         public static ICampaignFactory CreateCampaign(InvoiceDto invoiceDto)
         {
             ICampaignFactory campaignFactory;
-            if (invoiceDto.CustomerTypeName == (object)CampaignType.Amount)
+            if (invoiceDto.DiscountTypeName == (object)CampaignType.Amount)
             { campaignFactory = new DiscountAmountDto(invoiceDto); }
-            else if (invoiceDto.CustomerTypeName == (object)CampaignType.Rate)
+            else if (invoiceDto.DiscountTypeName == CampaignType.Rate.ToString())
             { campaignFactory = new DiscountRateDto(invoiceDto); }
             else
             {

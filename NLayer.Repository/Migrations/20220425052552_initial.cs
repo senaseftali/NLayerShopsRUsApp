@@ -98,6 +98,7 @@ namespace NLayer.Repository.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    DiscountTypeName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CustomerTypeId = table.Column<int>(type: "int", nullable: false),
                     Rate = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -251,10 +252,10 @@ namespace NLayer.Repository.Migrations
                 columns: new[] { "Id", "CreatedDate", "IsActive", "Name", "UpdatedDate" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), true, "Stationary", null },
-                    { 2, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), true, "Technology", null },
-                    { 3, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), true, "Clothes", null },
-                    { 4, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), true, "Grocery", null }
+                    { 1, new DateTime(2022, 4, 25, 8, 25, 51, 226, DateTimeKind.Local).AddTicks(5175), true, "Stationary", null },
+                    { 2, new DateTime(2022, 4, 25, 8, 25, 51, 226, DateTimeKind.Local).AddTicks(5194), true, "Technology", null },
+                    { 3, new DateTime(2022, 4, 25, 8, 25, 51, 226, DateTimeKind.Local).AddTicks(5196), true, "Clothes", null },
+                    { 4, new DateTime(2022, 4, 25, 8, 25, 51, 226, DateTimeKind.Local).AddTicks(5201), true, "Grocery", null }
                 });
 
             migrationBuilder.InsertData(
@@ -262,10 +263,10 @@ namespace NLayer.Repository.Migrations
                 columns: new[] { "Id", "CreatedDate", "IsActive", "Name", "UpdatedDate" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2022, 4, 25, 4, 19, 22, 252, DateTimeKind.Local).AddTicks(523), true, "Employee", null },
-                    { 2, new DateTime(2022, 4, 25, 4, 19, 22, 252, DateTimeKind.Local).AddTicks(528), true, "Affiliate", null },
-                    { 3, new DateTime(2022, 4, 25, 4, 19, 22, 252, DateTimeKind.Local).AddTicks(529), true, "Customer", null },
-                    { 4, new DateTime(2022, 4, 25, 4, 19, 22, 252, DateTimeKind.Local).AddTicks(530), true, "Other", null }
+                    { 1, new DateTime(2022, 4, 25, 8, 25, 51, 226, DateTimeKind.Local).AddTicks(6495), true, "Employee", null },
+                    { 2, new DateTime(2022, 4, 25, 8, 25, 51, 226, DateTimeKind.Local).AddTicks(6498), true, "Affiliate", null },
+                    { 3, new DateTime(2022, 4, 25, 8, 25, 51, 226, DateTimeKind.Local).AddTicks(6500), true, "Customer", null },
+                    { 4, new DateTime(2022, 4, 25, 8, 25, 51, 226, DateTimeKind.Local).AddTicks(6502), true, "Other", null }
                 });
 
             migrationBuilder.InsertData(
@@ -273,21 +274,21 @@ namespace NLayer.Repository.Migrations
                 columns: new[] { "Id", "CreatedDate", "CustomerTypeId", "Email", "IsActive", "LastName", "Name", "UpdatedDate" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2022, 4, 25, 4, 19, 22, 252, DateTimeKind.Local).AddTicks(362), 1, "seftalisena@gmail.com", true, "ŞEFTALİ", "Sena", null },
-                    { 2, new DateTime(2022, 4, 25, 4, 19, 22, 252, DateTimeKind.Local).AddTicks(376), 2, "seftali@gmail.com", true, "ŞEFTALİ", "Fatih", null },
-                    { 3, new DateTime(2022, 4, 25, 4, 19, 22, 252, DateTimeKind.Local).AddTicks(377), 3, "seftali@gmail.com", true, "ŞEFTALİ", "Ayşe", null },
-                    { 4, new DateTime(2022, 4, 25, 4, 19, 22, 252, DateTimeKind.Local).AddTicks(378), 4, "seftali@gmail.com", true, "ŞEFTALİ", "Ekrem", null }
+                    { 1, new DateTime(2022, 4, 25, 8, 25, 51, 226, DateTimeKind.Local).AddTicks(6164), 1, "seftalisena@gmail.com", true, "ŞEFTALİ", "Sena", null },
+                    { 2, new DateTime(2022, 4, 25, 8, 25, 51, 226, DateTimeKind.Local).AddTicks(6168), 2, "seftali@gmail.com", true, "ŞEFTALİ", "Fatih", null },
+                    { 3, new DateTime(2022, 4, 25, 8, 25, 51, 226, DateTimeKind.Local).AddTicks(6170), 3, "seftali@gmail.com", true, "ŞEFTALİ", "Ayşe", null },
+                    { 4, new DateTime(2022, 4, 25, 8, 25, 51, 226, DateTimeKind.Local).AddTicks(6172), 4, "seftali@gmail.com", true, "ŞEFTALİ", "Ekrem", null }
                 });
 
             migrationBuilder.InsertData(
                 table: "Discounts",
-                columns: new[] { "Id", "CreatedDate", "CustomerTypeId", "IsActive", "Name", "Rate", "UpdatedDate" },
+                columns: new[] { "Id", "CreatedDate", "CustomerTypeId", "DiscountTypeName", "IsActive", "Name", "Rate", "UpdatedDate" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2022, 4, 25, 4, 19, 22, 252, DateTimeKind.Local).AddTicks(744), 1, true, "Percentage Discount", 30m, null },
-                    { 2, new DateTime(2022, 4, 25, 4, 19, 22, 252, DateTimeKind.Local).AddTicks(746), 4, true, "Flat Discount", 5m, null },
-                    { 3, new DateTime(2022, 4, 25, 4, 19, 22, 252, DateTimeKind.Local).AddTicks(747), 3, true, "Percentage Discount", 5m, null },
-                    { 4, new DateTime(2022, 4, 25, 4, 19, 22, 252, DateTimeKind.Local).AddTicks(748), 2, true, "Percentage Discount", 10m, null }
+                    { 1, new DateTime(2022, 4, 25, 8, 25, 51, 226, DateTimeKind.Local).AddTicks(6791), 1, null, true, "Rate", 30m, null },
+                    { 2, new DateTime(2022, 4, 25, 8, 25, 51, 226, DateTimeKind.Local).AddTicks(6794), 4, null, true, "Amount", 5m, null },
+                    { 3, new DateTime(2022, 4, 25, 8, 25, 51, 226, DateTimeKind.Local).AddTicks(6796), 3, null, true, "Rate", 5m, null },
+                    { 4, new DateTime(2022, 4, 25, 8, 25, 51, 226, DateTimeKind.Local).AddTicks(6904), 2, null, true, "Rate", 10m, null }
                 });
 
             migrationBuilder.InsertData(
@@ -295,13 +296,13 @@ namespace NLayer.Repository.Migrations
                 columns: new[] { "Id", "CategoryId", "CreatedDate", "IsActive", "Name", "Price", "Stock", "UpdatedDate" },
                 values: new object[,]
                 {
-                    { 1, 1, new DateTime(2022, 4, 25, 4, 19, 22, 252, DateTimeKind.Local).AddTicks(1443), true, "Kalem 1", 100m, 20, null },
-                    { 2, 1, new DateTime(2022, 4, 25, 4, 19, 22, 252, DateTimeKind.Local).AddTicks(1445), true, "Fabel Castel Pencil", 200m, 30, null },
-                    { 3, 1, new DateTime(2022, 4, 25, 4, 19, 22, 252, DateTimeKind.Local).AddTicks(1446), true, "Rotring Pencil", 600m, 60, null },
-                    { 4, 2, new DateTime(2022, 4, 25, 4, 19, 22, 252, DateTimeKind.Local).AddTicks(1447), true, "Pc", 600m, 60, null },
-                    { 5, 2, new DateTime(2022, 4, 25, 4, 19, 22, 252, DateTimeKind.Local).AddTicks(1450), true, "Phone", 6600m, 320, null },
-                    { 6, 4, new DateTime(2022, 4, 25, 4, 19, 22, 252, DateTimeKind.Local).AddTicks(1448), true, "Pasta", 50m, 60, null },
-                    { 7, 4, new DateTime(2022, 4, 25, 4, 19, 22, 252, DateTimeKind.Local).AddTicks(1449), true, "Meet", 100m, 60, null }
+                    { 1, 1, new DateTime(2022, 4, 25, 8, 25, 51, 226, DateTimeKind.Local).AddTicks(9379), true, "Kalem 1", 100m, 20, null },
+                    { 2, 1, new DateTime(2022, 4, 25, 8, 25, 51, 226, DateTimeKind.Local).AddTicks(9382), true, "Fabel Castel Pencil", 200m, 30, null },
+                    { 3, 1, new DateTime(2022, 4, 25, 8, 25, 51, 226, DateTimeKind.Local).AddTicks(9383), true, "Rotring Pencil", 600m, 60, null },
+                    { 4, 2, new DateTime(2022, 4, 25, 8, 25, 51, 226, DateTimeKind.Local).AddTicks(9385), true, "Pc", 600m, 60, null },
+                    { 5, 2, new DateTime(2022, 4, 25, 8, 25, 51, 226, DateTimeKind.Local).AddTicks(9391), true, "Phone", 6600m, 320, null },
+                    { 6, 4, new DateTime(2022, 4, 25, 8, 25, 51, 226, DateTimeKind.Local).AddTicks(9387), true, "Pasta", 50m, 60, null },
+                    { 7, 4, new DateTime(2022, 4, 25, 8, 25, 51, 226, DateTimeKind.Local).AddTicks(9389), true, "Meet", 100m, 60, null }
                 });
 
             migrationBuilder.InsertData(
@@ -309,10 +310,10 @@ namespace NLayer.Repository.Migrations
                 columns: new[] { "Id", "CreatedDate", "CustomerId", "IsActive", "Status", "TotalAmount", "UpdatedDate" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2022, 4, 25, 4, 19, 22, 252, DateTimeKind.Local).AddTicks(1259), 1, true, 1, 1000m, null },
-                    { 2, new DateTime(2022, 4, 25, 4, 19, 22, 252, DateTimeKind.Local).AddTicks(1310), 2, true, 1, 2000m, null },
-                    { 3, new DateTime(2022, 4, 25, 4, 19, 22, 252, DateTimeKind.Local).AddTicks(1311), 3, true, 1, 3000m, null },
-                    { 4, new DateTime(2022, 4, 25, 4, 19, 22, 252, DateTimeKind.Local).AddTicks(1312), 4, true, 1, 4000m, null }
+                    { 1, new DateTime(2022, 4, 25, 8, 25, 51, 226, DateTimeKind.Local).AddTicks(9017), 1, true, 1, 1000m, null },
+                    { 2, new DateTime(2022, 4, 25, 8, 25, 51, 226, DateTimeKind.Local).AddTicks(9020), 2, true, 1, 2000m, null },
+                    { 3, new DateTime(2022, 4, 25, 8, 25, 51, 226, DateTimeKind.Local).AddTicks(9022), 3, true, 1, 3000m, null },
+                    { 4, new DateTime(2022, 4, 25, 8, 25, 51, 226, DateTimeKind.Local).AddTicks(9024), 4, true, 1, 4000m, null }
                 });
 
             migrationBuilder.InsertData(
@@ -329,10 +330,10 @@ namespace NLayer.Repository.Migrations
                 columns: new[] { "Id", "CreatedDate", "CustomerId", "IsActive", "OrderId", "UpdatedDate" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2022, 4, 25, 4, 19, 22, 252, DateTimeKind.Local).AddTicks(1009), 1, true, 1, null },
-                    { 2, new DateTime(2022, 4, 25, 4, 19, 22, 252, DateTimeKind.Local).AddTicks(1010), 2, true, 2, null },
-                    { 3, new DateTime(2022, 4, 25, 4, 19, 22, 252, DateTimeKind.Local).AddTicks(1011), 3, true, 3, null },
-                    { 4, new DateTime(2022, 4, 25, 4, 19, 22, 252, DateTimeKind.Local).AddTicks(1012), 4, true, 4, null }
+                    { 1, new DateTime(2022, 4, 25, 8, 25, 51, 226, DateTimeKind.Local).AddTicks(8202), 1, true, 1, null },
+                    { 2, new DateTime(2022, 4, 25, 8, 25, 51, 226, DateTimeKind.Local).AddTicks(8207), 2, true, 2, null },
+                    { 3, new DateTime(2022, 4, 25, 8, 25, 51, 226, DateTimeKind.Local).AddTicks(8209), 3, true, 3, null },
+                    { 4, new DateTime(2022, 4, 25, 8, 25, 51, 226, DateTimeKind.Local).AddTicks(8211), 4, true, 4, null }
                 });
 
             migrationBuilder.InsertData(
@@ -351,10 +352,10 @@ namespace NLayer.Repository.Migrations
                 columns: new[] { "Id", "CreatedDate", "DiscountId", "InvoiceId", "IsActive", "Price", "Quantity", "UpdatedDate" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2022, 4, 25, 4, 19, 22, 252, DateTimeKind.Local).AddTicks(881), 1, 1, true, 1500m, 3, null },
-                    { 2, new DateTime(2022, 4, 25, 4, 19, 22, 252, DateTimeKind.Local).AddTicks(882), 2, 2, true, 2500m, 1, null },
-                    { 3, new DateTime(2022, 4, 25, 4, 19, 22, 252, DateTimeKind.Local).AddTicks(883), 3, 3, true, 7500m, 5, null },
-                    { 4, new DateTime(2022, 4, 25, 4, 19, 22, 252, DateTimeKind.Local).AddTicks(884), 4, 4, true, 5500m, 1, null }
+                    { 1, new DateTime(2022, 4, 25, 8, 25, 51, 226, DateTimeKind.Local).AddTicks(7194), 1, 1, true, 1500m, 3, null },
+                    { 2, new DateTime(2022, 4, 25, 8, 25, 51, 226, DateTimeKind.Local).AddTicks(7197), 2, 2, true, 2500m, 1, null },
+                    { 3, new DateTime(2022, 4, 25, 8, 25, 51, 226, DateTimeKind.Local).AddTicks(7199), 3, 3, true, 7500m, 5, null },
+                    { 4, new DateTime(2022, 4, 25, 8, 25, 51, 226, DateTimeKind.Local).AddTicks(7201), 4, 4, true, 5500m, 1, null }
                 });
 
             migrationBuilder.CreateIndex(

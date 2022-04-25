@@ -9,6 +9,7 @@ namespace NLayer.Core.Models
     public class Discount:BaseEntity
     {
         public string Name { get; set; }
+        
         public int CustomerTypeId { get; set; }
         public CustomerType CustomerType { get; set; }
         public decimal Rate { get; set; }

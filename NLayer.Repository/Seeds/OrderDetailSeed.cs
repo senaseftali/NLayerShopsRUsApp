@@ -17,9 +17,9 @@ namespace NLayer.Repository.Seeds
             {
                 Id = 1,
                 OrderId = 1,
-                ProductId =4
-            
-            
+                ProductId = 4
+
+
             }, new OrderDetail
             {
                 Id = 2,
@@ -44,4 +44,9 @@ namespace NLayer.Repository.Seeds
     }
 }
 
+//Products = new List<Product>() {
+//                new Product { Id = 2 },
+//                new Product { Id = 7 },
+//                new Product { Id = 5}}
 
+//            }
