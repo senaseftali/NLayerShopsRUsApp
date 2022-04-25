@@ -10,6 +10,6 @@ namespace NLayer.Core.Services
 {
     public interface IDiscountService : IService<Discount>
     {
-        Task<CustomResponseDto<InvoiceDto>> GetInvoiceCalculate(Order orderWithCustomerDto);
+        Task<CustomResponseDto<InvoiceDto>> GetInvoiceCalculate(OrderWithCustomerDto orderWithCustomerDto);
     }
 }

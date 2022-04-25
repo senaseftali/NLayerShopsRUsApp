@@ -13,9 +13,12 @@ namespace NLayer.Core.Models
 
         public string Email { get; set; }
 
-        public ICollection<CustomerType> CustomerTypes { get; set; }
-        //public CustomerCustomerType CustomerCustomerType { get; set; }
+
+        //public ICollection<CustomerType> CustomerTypes { get; set; }
+        public int CustomerTypeId { get; set; }
+        public CustomerType CustomerType { get; set; }
         public Invoice Invoice { get; set; }
         public Order Order { get; set; }
+
     }
 }

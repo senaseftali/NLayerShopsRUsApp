@@ -26,24 +26,6 @@ namespace NLayer.Repository.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Customers",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
-                    LastName = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
-                    Email = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
-                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    UpdatedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    IsActive = table.Column<bool>(type: "bit", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Customers", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "CustomerTypes",
                 columns: table => new
                 {
@@ -85,48 +67,25 @@ namespace NLayer.Repository.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Orders",
+                name: "Customers",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Status = table.Column<int>(type: "int", nullable: false),
-                    TotalAmount = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    CustomerId = table.Column<int>(type: "int", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
+                    LastName = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
+                    Email = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
+                    CustomerTypeId = table.Column<int>(type: "int", nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UpdatedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     IsActive = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Orders", x => x.Id);
+                    table.PrimaryKey("PK_Customers", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Orders_Customers_CustomerId",
-                        column: x => x.CustomerId,
-                        principalTable: "Customers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "CustomerCustomerType",
-                columns: table => new
-                {
-                    CustomerTypesId = table.Column<int>(type: "int", nullable: false),
-                    CustomersId = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_CustomerCustomerType", x => new { x.CustomerTypesId, x.CustomersId });
-                    table.ForeignKey(
-                        name: "FK_CustomerCustomerType_Customers_CustomersId",
-                        column: x => x.CustomersId,
-                        principalTable: "Customers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_CustomerCustomerType_CustomerTypes_CustomerTypesId",
-                        column: x => x.CustomerTypesId,
+                        name: "FK_Customers_CustomerTypes_CustomerTypeId",
+                        column: x => x.CustomerTypeId,
                         principalTable: "CustomerTypes",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -179,6 +138,30 @@ namespace NLayer.Repository.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Orders",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Status = table.Column<int>(type: "int", nullable: false),
+                    TotalAmount = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    CustomerId = table.Column<int>(type: "int", nullable: false),
+                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UpdatedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    IsActive = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Orders", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Orders_Customers_CustomerId",
+                        column: x => x.CustomerId,
+                        principalTable: "Customers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Invoices",
                 columns: table => new
                 {
@@ -207,7 +190,7 @@ namespace NLayer.Repository.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "OrderDetail",
+                name: "OrderDetails",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -218,15 +201,15 @@ namespace NLayer.Repository.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_OrderDetail", x => x.Id);
+                    table.PrimaryKey("PK_OrderDetails", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_OrderDetail_Orders_OrderId",
+                        name: "FK_OrderDetails_Orders_OrderId",
                         column: x => x.OrderId,
                         principalTable: "Orders",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_OrderDetail_Products_ProductId",
+                        name: "FK_OrderDetails_Products_ProductId",
                         column: x => x.ProductId,
                         principalTable: "Products",
                         principalColumn: "Id",
@@ -239,10 +222,10 @@ namespace NLayer.Repository.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    InvoiceId = table.Column<int>(type: "int", nullable: false),
-                    DiscountId = table.Column<int>(type: "int", nullable: false),
                     Quantity = table.Column<int>(type: "int", nullable: false),
                     Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    InvoiceId = table.Column<int>(type: "int", nullable: false),
+                    DiscountId = table.Column<int>(type: "int", nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UpdatedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     IsActive = table.Column<bool>(type: "bit", nullable: false)
@@ -260,8 +243,7 @@ namespace NLayer.Repository.Migrations
                         name: "FK_InvoiceDetail_Invoices_InvoiceId",
                         column: x => x.InvoiceId,
                         principalTable: "Invoices",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.InsertData(
@@ -280,24 +262,21 @@ namespace NLayer.Repository.Migrations
                 columns: new[] { "Id", "CreatedDate", "IsActive", "Name", "UpdatedDate" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2022, 4, 24, 18, 35, 57, 680, DateTimeKind.Local).AddTicks(7976), true, "Employee", null },
-                    { 2, new DateTime(2022, 4, 24, 18, 35, 57, 680, DateTimeKind.Local).AddTicks(7978), true, "Affiliate", null },
-                    { 3, new DateTime(2022, 4, 24, 18, 35, 57, 680, DateTimeKind.Local).AddTicks(7979), true, "Customer", null },
-                    { 4, new DateTime(2022, 4, 24, 18, 35, 57, 680, DateTimeKind.Local).AddTicks(7980), true, "Other", null }
+                    { 1, new DateTime(2022, 4, 25, 4, 19, 22, 252, DateTimeKind.Local).AddTicks(523), true, "Employee", null },
+                    { 2, new DateTime(2022, 4, 25, 4, 19, 22, 252, DateTimeKind.Local).AddTicks(528), true, "Affiliate", null },
+                    { 3, new DateTime(2022, 4, 25, 4, 19, 22, 252, DateTimeKind.Local).AddTicks(529), true, "Customer", null },
+                    { 4, new DateTime(2022, 4, 25, 4, 19, 22, 252, DateTimeKind.Local).AddTicks(530), true, "Other", null }
                 });
 
             migrationBuilder.InsertData(
                 table: "Customers",
-                columns: new[] { "Id", "CreatedDate", "Email", "IsActive", "LastName", "Name", "UpdatedDate" },
+                columns: new[] { "Id", "CreatedDate", "CustomerTypeId", "Email", "IsActive", "LastName", "Name", "UpdatedDate" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2022, 4, 24, 18, 35, 57, 680, DateTimeKind.Local).AddTicks(7832), "seftalisena@gmail.com", true, "ŞEFTALİ", "Sena", null },
-                    { 2, new DateTime(2022, 4, 24, 18, 35, 57, 680, DateTimeKind.Local).AddTicks(7841), "seftali@gmail.com", true, "ŞEFTALİ", "Fatih", null },
-                    { 3, new DateTime(2022, 4, 24, 18, 35, 57, 680, DateTimeKind.Local).AddTicks(7843), "seftali@gmail.com", true, "ŞEFTALİ", "Ayşe", null },
-                    { 4, new DateTime(2022, 4, 24, 18, 35, 57, 680, DateTimeKind.Local).AddTicks(7843), "seftali@gmail.com", true, "ŞEFTALİ", "Ekrem", null },
-                    { 5, new DateTime(2022, 4, 24, 18, 35, 57, 680, DateTimeKind.Local).AddTicks(7846), "seftali@gmail.com", true, "ŞEFTALİ", "Ömer", null },
-                    { 6, new DateTime(2022, 4, 24, 18, 35, 57, 680, DateTimeKind.Local).AddTicks(7844), "seftali@gmail.com", true, "ŞEFTALİ", "Elif", null },
-                    { 7, new DateTime(2022, 4, 24, 18, 35, 57, 680, DateTimeKind.Local).AddTicks(7845), "seftali@gmail.com", true, "ŞEFTALİ", "Şeyma", null }
+                    { 1, new DateTime(2022, 4, 25, 4, 19, 22, 252, DateTimeKind.Local).AddTicks(362), 1, "seftalisena@gmail.com", true, "ŞEFTALİ", "Sena", null },
+                    { 2, new DateTime(2022, 4, 25, 4, 19, 22, 252, DateTimeKind.Local).AddTicks(376), 2, "seftali@gmail.com", true, "ŞEFTALİ", "Fatih", null },
+                    { 3, new DateTime(2022, 4, 25, 4, 19, 22, 252, DateTimeKind.Local).AddTicks(377), 3, "seftali@gmail.com", true, "ŞEFTALİ", "Ayşe", null },
+                    { 4, new DateTime(2022, 4, 25, 4, 19, 22, 252, DateTimeKind.Local).AddTicks(378), 4, "seftali@gmail.com", true, "ŞEFTALİ", "Ekrem", null }
                 });
 
             migrationBuilder.InsertData(
@@ -305,21 +284,10 @@ namespace NLayer.Repository.Migrations
                 columns: new[] { "Id", "CreatedDate", "CustomerTypeId", "IsActive", "Name", "Rate", "UpdatedDate" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2022, 4, 24, 18, 35, 57, 680, DateTimeKind.Local).AddTicks(8112), 1, true, "Percentage Discount", 30m, null },
-                    { 2, new DateTime(2022, 4, 24, 18, 35, 57, 680, DateTimeKind.Local).AddTicks(8113), 4, true, "Flat Discount", 5m, null },
-                    { 3, new DateTime(2022, 4, 24, 18, 35, 57, 680, DateTimeKind.Local).AddTicks(8114), 3, true, "Percentage Discount", 5m, null },
-                    { 4, new DateTime(2022, 4, 24, 18, 35, 57, 680, DateTimeKind.Local).AddTicks(8114), 2, true, "Percentage Discount", 10m, null }
-                });
-
-            migrationBuilder.InsertData(
-                table: "Orders",
-                columns: new[] { "Id", "CreatedDate", "CustomerId", "IsActive", "Status", "TotalAmount", "UpdatedDate" },
-                values: new object[,]
-                {
-                    { 1, new DateTime(2022, 4, 24, 18, 35, 57, 680, DateTimeKind.Local).AddTicks(8677), 1, true, 1, 1000m, null },
-                    { 2, new DateTime(2022, 4, 24, 18, 35, 57, 680, DateTimeKind.Local).AddTicks(8681), 2, true, 1, 2000m, null },
-                    { 3, new DateTime(2022, 4, 24, 18, 35, 57, 680, DateTimeKind.Local).AddTicks(8682), 3, true, 1, 3000m, null },
-                    { 4, new DateTime(2022, 4, 24, 18, 35, 57, 680, DateTimeKind.Local).AddTicks(8683), 4, true, 1, 4000m, null }
+                    { 1, new DateTime(2022, 4, 25, 4, 19, 22, 252, DateTimeKind.Local).AddTicks(744), 1, true, "Percentage Discount", 30m, null },
+                    { 2, new DateTime(2022, 4, 25, 4, 19, 22, 252, DateTimeKind.Local).AddTicks(746), 4, true, "Flat Discount", 5m, null },
+                    { 3, new DateTime(2022, 4, 25, 4, 19, 22, 252, DateTimeKind.Local).AddTicks(747), 3, true, "Percentage Discount", 5m, null },
+                    { 4, new DateTime(2022, 4, 25, 4, 19, 22, 252, DateTimeKind.Local).AddTicks(748), 2, true, "Percentage Discount", 10m, null }
                 });
 
             migrationBuilder.InsertData(
@@ -327,35 +295,24 @@ namespace NLayer.Repository.Migrations
                 columns: new[] { "Id", "CategoryId", "CreatedDate", "IsActive", "Name", "Price", "Stock", "UpdatedDate" },
                 values: new object[,]
                 {
-                    { 1, 1, new DateTime(2022, 4, 24, 18, 35, 57, 680, DateTimeKind.Local).AddTicks(8800), true, "Kalem 1", 100m, 20, null },
-                    { 2, 1, new DateTime(2022, 4, 24, 18, 35, 57, 680, DateTimeKind.Local).AddTicks(8802), true, "Fabel Castel Pencil", 200m, 30, null },
-                    { 3, 1, new DateTime(2022, 4, 24, 18, 35, 57, 680, DateTimeKind.Local).AddTicks(8802), true, "Rotring Pencil", 600m, 60, null },
-                    { 4, 2, new DateTime(2022, 4, 24, 18, 35, 57, 680, DateTimeKind.Local).AddTicks(8803), true, "Pc", 600m, 60, null },
-                    { 5, 2, new DateTime(2022, 4, 24, 18, 35, 57, 680, DateTimeKind.Local).AddTicks(8809), true, "Phone", 6600m, 320, null },
-                    { 6, 4, new DateTime(2022, 4, 24, 18, 35, 57, 680, DateTimeKind.Local).AddTicks(8807), true, "Pasta", 50m, 60, null },
-                    { 7, 4, new DateTime(2022, 4, 24, 18, 35, 57, 680, DateTimeKind.Local).AddTicks(8808), true, "Meet", 100m, 60, null }
+                    { 1, 1, new DateTime(2022, 4, 25, 4, 19, 22, 252, DateTimeKind.Local).AddTicks(1443), true, "Kalem 1", 100m, 20, null },
+                    { 2, 1, new DateTime(2022, 4, 25, 4, 19, 22, 252, DateTimeKind.Local).AddTicks(1445), true, "Fabel Castel Pencil", 200m, 30, null },
+                    { 3, 1, new DateTime(2022, 4, 25, 4, 19, 22, 252, DateTimeKind.Local).AddTicks(1446), true, "Rotring Pencil", 600m, 60, null },
+                    { 4, 2, new DateTime(2022, 4, 25, 4, 19, 22, 252, DateTimeKind.Local).AddTicks(1447), true, "Pc", 600m, 60, null },
+                    { 5, 2, new DateTime(2022, 4, 25, 4, 19, 22, 252, DateTimeKind.Local).AddTicks(1450), true, "Phone", 6600m, 320, null },
+                    { 6, 4, new DateTime(2022, 4, 25, 4, 19, 22, 252, DateTimeKind.Local).AddTicks(1448), true, "Pasta", 50m, 60, null },
+                    { 7, 4, new DateTime(2022, 4, 25, 4, 19, 22, 252, DateTimeKind.Local).AddTicks(1449), true, "Meet", 100m, 60, null }
                 });
 
             migrationBuilder.InsertData(
-                table: "Invoices",
-                columns: new[] { "Id", "CreatedDate", "CustomerId", "IsActive", "OrderId", "UpdatedDate" },
+                table: "Orders",
+                columns: new[] { "Id", "CreatedDate", "CustomerId", "IsActive", "Status", "TotalAmount", "UpdatedDate" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2022, 4, 24, 18, 35, 57, 680, DateTimeKind.Local).AddTicks(8405), 1, true, 1, null },
-                    { 2, new DateTime(2022, 4, 24, 18, 35, 57, 680, DateTimeKind.Local).AddTicks(8406), 2, true, 2, null },
-                    { 3, new DateTime(2022, 4, 24, 18, 35, 57, 680, DateTimeKind.Local).AddTicks(8407), 3, true, 3, null },
-                    { 4, new DateTime(2022, 4, 24, 18, 35, 57, 680, DateTimeKind.Local).AddTicks(8407), 4, true, 4, null }
-                });
-
-            migrationBuilder.InsertData(
-                table: "OrderDetail",
-                columns: new[] { "Id", "OrderId", "ProductId", "Quantity" },
-                values: new object[,]
-                {
-                    { 1, 1, 4, 0 },
-                    { 2, 2, 7, 0 },
-                    { 3, 3, 5, 0 },
-                    { 4, 4, 3, 0 }
+                    { 1, new DateTime(2022, 4, 25, 4, 19, 22, 252, DateTimeKind.Local).AddTicks(1259), 1, true, 1, 1000m, null },
+                    { 2, new DateTime(2022, 4, 25, 4, 19, 22, 252, DateTimeKind.Local).AddTicks(1310), 2, true, 1, 2000m, null },
+                    { 3, new DateTime(2022, 4, 25, 4, 19, 22, 252, DateTimeKind.Local).AddTicks(1311), 3, true, 1, 3000m, null },
+                    { 4, new DateTime(2022, 4, 25, 4, 19, 22, 252, DateTimeKind.Local).AddTicks(1312), 4, true, 1, 4000m, null }
                 });
 
             migrationBuilder.InsertData(
@@ -368,20 +325,42 @@ namespace NLayer.Repository.Migrations
                 });
 
             migrationBuilder.InsertData(
+                table: "Invoices",
+                columns: new[] { "Id", "CreatedDate", "CustomerId", "IsActive", "OrderId", "UpdatedDate" },
+                values: new object[,]
+                {
+                    { 1, new DateTime(2022, 4, 25, 4, 19, 22, 252, DateTimeKind.Local).AddTicks(1009), 1, true, 1, null },
+                    { 2, new DateTime(2022, 4, 25, 4, 19, 22, 252, DateTimeKind.Local).AddTicks(1010), 2, true, 2, null },
+                    { 3, new DateTime(2022, 4, 25, 4, 19, 22, 252, DateTimeKind.Local).AddTicks(1011), 3, true, 3, null },
+                    { 4, new DateTime(2022, 4, 25, 4, 19, 22, 252, DateTimeKind.Local).AddTicks(1012), 4, true, 4, null }
+                });
+
+            migrationBuilder.InsertData(
+                table: "OrderDetails",
+                columns: new[] { "Id", "OrderId", "ProductId", "Quantity" },
+                values: new object[,]
+                {
+                    { 1, 1, 4, 0 },
+                    { 2, 2, 7, 0 },
+                    { 3, 3, 5, 0 },
+                    { 4, 4, 3, 0 }
+                });
+
+            migrationBuilder.InsertData(
                 table: "InvoiceDetail",
                 columns: new[] { "Id", "CreatedDate", "DiscountId", "InvoiceId", "IsActive", "Price", "Quantity", "UpdatedDate" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2022, 4, 24, 18, 35, 57, 680, DateTimeKind.Local).AddTicks(8237), 1, 1, true, 1500m, 3, null },
-                    { 2, new DateTime(2022, 4, 24, 18, 35, 57, 680, DateTimeKind.Local).AddTicks(8239), 2, 2, true, 2500m, 1, null },
-                    { 3, new DateTime(2022, 4, 24, 18, 35, 57, 680, DateTimeKind.Local).AddTicks(8240), 3, 3, true, 7500m, 5, null },
-                    { 4, new DateTime(2022, 4, 24, 18, 35, 57, 680, DateTimeKind.Local).AddTicks(8241), 4, 4, true, 5500m, 1, null }
+                    { 1, new DateTime(2022, 4, 25, 4, 19, 22, 252, DateTimeKind.Local).AddTicks(881), 1, 1, true, 1500m, 3, null },
+                    { 2, new DateTime(2022, 4, 25, 4, 19, 22, 252, DateTimeKind.Local).AddTicks(882), 2, 2, true, 2500m, 1, null },
+                    { 3, new DateTime(2022, 4, 25, 4, 19, 22, 252, DateTimeKind.Local).AddTicks(883), 3, 3, true, 7500m, 5, null },
+                    { 4, new DateTime(2022, 4, 25, 4, 19, 22, 252, DateTimeKind.Local).AddTicks(884), 4, 4, true, 5500m, 1, null }
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_CustomerCustomerType_CustomersId",
-                table: "CustomerCustomerType",
-                column: "CustomersId");
+                name: "IX_Customers_CustomerTypeId",
+                table: "Customers",
+                column: "CustomerTypeId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Discounts_CustomerTypeId",
@@ -414,14 +393,14 @@ namespace NLayer.Repository.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_OrderDetail_OrderId",
-                table: "OrderDetail",
+                name: "IX_OrderDetails_OrderId",
+                table: "OrderDetails",
                 column: "OrderId",
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_OrderDetail_ProductId",
-                table: "OrderDetail",
+                name: "IX_OrderDetails_ProductId",
+                table: "OrderDetails",
                 column: "ProductId",
                 unique: true);
 
@@ -446,13 +425,10 @@ namespace NLayer.Repository.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "CustomerCustomerType");
-
-            migrationBuilder.DropTable(
                 name: "InvoiceDetail");
 
             migrationBuilder.DropTable(
-                name: "OrderDetail");
+                name: "OrderDetails");
 
             migrationBuilder.DropTable(
                 name: "ProductFeatures");
@@ -467,9 +443,6 @@ namespace NLayer.Repository.Migrations
                 name: "Products");
 
             migrationBuilder.DropTable(
-                name: "CustomerTypes");
-
-            migrationBuilder.DropTable(
                 name: "Orders");
 
             migrationBuilder.DropTable(
@@ -477,6 +450,9 @@ namespace NLayer.Repository.Migrations
 
             migrationBuilder.DropTable(
                 name: "Customers");
+
+            migrationBuilder.DropTable(
+                name: "CustomerTypes");
         }
     }
 }

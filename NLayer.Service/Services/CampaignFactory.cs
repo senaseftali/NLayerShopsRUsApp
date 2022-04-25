@@ -10,24 +10,21 @@ namespace NLayer.Service.Services
 {
     public abstract class CampaignFactory : ICampaignFactory
     {
-      
-        public abstract ICampaign CreateObj();
 
-        public static T CreateCampaign<T>() where T : ICampaignFactory, new()
+
+        public static ICampaignFactory CreateCampaign(InvoiceDto invoiceDto)
         {
-            return (T)new T().CreateObj();
+            ICampaignFactory campaignFactory;
+            if (invoiceDto.CustomerTypeName == (object)CampaignType.Amount)
+            { campaignFactory = new DiscountAmountDto(invoiceDto); }
+            else if (invoiceDto.CustomerTypeName == (object)CampaignType.Rate)
+            { campaignFactory = new DiscountRateDto(invoiceDto); }
+            else
+            {
+                throw new Exception("Not Implemented!");
+            }
+            return campaignFactory;
         }
 
-        public static ICampaign CreateCampaign(object dataObj)
-        {
-            if (dataObj == (object)CampaignType.Amount)
-                return CreateCampaign<DiscountAmountDto>();
-            if (dataObj == (object)CampaignType.Rate)
-                return CreateCampaign<DiscountRateDto>();
-            throw new Exception("Not Implemented!");
-        }
-
-        
     }
-  
 }

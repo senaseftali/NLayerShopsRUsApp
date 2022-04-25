@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace NLayer.Core.Services
 {
-    public interface ICampaign : ICampaignFactory
+    public interface ICampaign 
     {
-        string CampaignName { get; }
+       
     }
 }

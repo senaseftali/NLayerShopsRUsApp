@@ -19,6 +19,7 @@ namespace NLayer.Repository.Seeds
                 Name = "Sena",
                 LastName = "ŞEFTALİ",
                 Email = "seftalisena@gmail.com",
+                CustomerTypeId=1,
                 CreatedDate = DateTime.Now
             },
             new Customer
@@ -27,6 +28,7 @@ namespace NLayer.Repository.Seeds
                 Name = "Fatih",
                 LastName = "ŞEFTALİ",
                 Email = "seftali@gmail.com",
+                CustomerTypeId = 2,
                 CreatedDate = DateTime.Now
             },
             new Customer
@@ -35,6 +37,7 @@ namespace NLayer.Repository.Seeds
                 Name = "Ayşe",
                 LastName = "ŞEFTALİ",
                 Email = "seftali@gmail.com",
+                CustomerTypeId = 3,
                 CreatedDate = DateTime.Now
             }, new Customer
             {
@@ -42,28 +45,33 @@ namespace NLayer.Repository.Seeds
                 Name = "Ekrem",
                 LastName = "ŞEFTALİ",
                 Email = "seftali@gmail.com",
+                CustomerTypeId = 4,
                 CreatedDate = DateTime.Now
-            }, new Customer
-            {
-                Id = 6,
-                Name = "Elif",
-                LastName = "ŞEFTALİ",
-                Email = "seftali@gmail.com",
-                CreatedDate = DateTime.Now
-            }, new Customer
-            {
-                Id = 7,
-                Name = "Şeyma",
-                LastName = "ŞEFTALİ",
-                Email = "seftali@gmail.com",
-                CreatedDate = DateTime.Now
-            }, new Customer
-            {
-                Id = 5,
-                Name = "Ömer",
-                LastName = "ŞEFTALİ",
-                Email = "seftali@gmail.com",
-                CreatedDate = DateTime.Now
+            
+            //}, new Customer
+            //{
+            //    Id = 6,
+            //    Name = "Elif",
+            //    LastName = "ŞEFTALİ",
+            //    Email = "seftali@gmail.com",
+              
+            //    CreatedDate = DateTime.Now
+            //}, new Customer
+            //{
+            //    Id = 7,
+            //    Name = "Şeyma",
+            //    LastName = "ŞEFTALİ",
+            //    Email = "seftali@gmail.com",
+              
+            //    CreatedDate = DateTime.Now
+            //}, new Customer
+            //{
+            //    Id = 5,
+            //    Name = "Ömer",
+            //    LastName = "ŞEFTALİ",
+            //    Email = "seftali@gmail.com",
+               
+            //    CreatedDate = DateTime.Now
             });
         }
     }

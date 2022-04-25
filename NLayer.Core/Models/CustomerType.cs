@@ -9,8 +9,11 @@ namespace NLayer.Core.Models
     public class CustomerType : BaseEntity
     {
         public string Name { get; set; }
-        public ICollection<Customer> Customers { get; set; }
+        //public ICollection<Customer> Customers { get; set; }
         public Discount Discount { get; set; }
+        //public int CustomerId { get; set; }
+
+        public ICollection<Customer> Customers { get; set; }
         //public CustomerCustomerType CustomerCustomerType { get; set; }
     }
 }

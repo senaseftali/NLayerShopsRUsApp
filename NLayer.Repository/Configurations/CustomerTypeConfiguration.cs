@@ -19,9 +19,9 @@ namespace NLayer.Repository.Configurations
                 builder.Property(x => x.Name).IsRequired().HasMaxLength(200);
 
                 builder.ToTable("CustomerTypes");
-
-                //builder.HasMany(x => x.CustomerTypes).WithMany(x => x.Customers);
-            }
+          
+            //builder.HasMany(x => x.CustomerTypes).WithMany(x => x.Customers);
+        }
         
     }
 }

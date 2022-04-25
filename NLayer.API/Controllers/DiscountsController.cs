@@ -8,21 +8,21 @@ using NLayer.Core.Services;
 
 namespace NLayer.API.Controllers
 {
-  
+
     public class DiscountsController : CustomBaseController
     {
         private readonly IDiscountService _discountService;
-        private readonly IOrderService _orderService;
-        private readonly ICustomerService _customerService;
+        //private readonly IOrderService _orderService;
+        //private readonly ICustomerService _customerService;
         private readonly IMapper _mapper;
 
 
-        public DiscountsController(IDiscountService discountService , IMapper mapper, IOrderService orderService, ICustomerService customerTypeService)
+        public DiscountsController(IDiscountService discountService, IMapper mapper /*IOrderService orderService, ICustomerService customerTypeService*/)
         {
             _discountService = discountService;
             _mapper = mapper;
-            _orderService = orderService;
-            _customerService = customerTypeService;
+            //_orderService = orderService;
+            //_customerService = customerTypeService;
         }
         [HttpGet]
         public async Task<IActionResult> GetAll()
@@ -52,28 +52,19 @@ namespace NLayer.API.Controllers
             var response = await _discountService.AddAsync(_mapper.Map<Discount>(discountDto));
 
             return CreateActionResult(CustomResponseDto<DiscountDto>.Success(201, discountDto));
-        }   
-        
-        [HttpGet]
+        }
+
+        [HttpPost]
+        [Route("/api/[controller]/[action]")]
         public async Task<IActionResult> InvoiceCalculate(OrderWithCustomerDto orderWithCustomerDto)
         {
-            var order = await _orderService.GetByIdAsync(orderWithCustomerDto.OrderId);
-          
-            if (order.CustomerId == orderWithCustomerDto.CustomerId)
-            {
-                
-                 var orderDto = _mapper.Map<OrderDto>(order);
-                //var customer= await _customerService.GetByIdAsync(order.CustomerId);
-                //var customerDto = _mapper.Map<CustomerDto>(customer);
-               
-                return CreateActionResult(await _discountService.GetInvoiceCalculate(order));
-            }
-            else
-            {
-                return CreateActionResult(CustomResponseDto<Discount>.Fail(404, "Customer not found"));
-            }
            
+
+                return CreateActionResult(await _discountService.GetInvoiceCalculate(orderWithCustomerDto));
+
+            
+
         }
-       
+
     }
-    }
+}

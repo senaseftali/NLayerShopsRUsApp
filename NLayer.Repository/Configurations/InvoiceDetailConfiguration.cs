@@ -17,9 +17,11 @@ namespace NLayer.Repository.Configurations
             builder.Property(x => x.Id).UseIdentityColumn();
             builder.Property(x => x.Price).IsRequired().HasColumnType("decimal(18,2)");
             builder.Property(x => x.Quantity).IsRequired();
-         
-            builder.HasOne(x => x.Invoice).WithOne(x => x.InvoiceDetail).HasForeignKey<InvoiceDetail>(x => x.InvoiceId);
+            builder.HasOne(x => x.Invoice).WithOne(x => x.InvoiceDetail).HasForeignKey<InvoiceDetail>(x => x.InvoiceId).OnDelete(DeleteBehavior.NoAction);
+
+
         }
-    
     }
+    
+    
 }

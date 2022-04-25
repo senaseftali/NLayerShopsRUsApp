@@ -22,21 +22,6 @@ namespace NLayer.Repository.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
-            modelBuilder.Entity("CustomerCustomerType", b =>
-                {
-                    b.Property<int>("CustomerTypesId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("CustomersId")
-                        .HasColumnType("int");
-
-                    b.HasKey("CustomerTypesId", "CustomersId");
-
-                    b.HasIndex("CustomersId");
-
-                    b.ToTable("CustomerCustomerType");
-                });
-
             modelBuilder.Entity("NLayer.Core.Models.Category", b =>
                 {
                     b.Property<int>("Id")
@@ -105,6 +90,9 @@ namespace NLayer.Repository.Migrations
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<int>("CustomerTypeId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasMaxLength(200)
@@ -128,13 +116,16 @@ namespace NLayer.Repository.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("CustomerTypeId");
+
                     b.ToTable("Customers", (string)null);
 
                     b.HasData(
                         new
                         {
                             Id = 1,
-                            CreatedDate = new DateTime(2022, 4, 24, 18, 35, 57, 680, DateTimeKind.Local).AddTicks(7832),
+                            CreatedDate = new DateTime(2022, 4, 25, 4, 19, 22, 252, DateTimeKind.Local).AddTicks(362),
+                            CustomerTypeId = 1,
                             Email = "seftalisena@gmail.com",
                             IsActive = true,
                             LastName = "ŞEFTALİ",
@@ -143,7 +134,8 @@ namespace NLayer.Repository.Migrations
                         new
                         {
                             Id = 2,
-                            CreatedDate = new DateTime(2022, 4, 24, 18, 35, 57, 680, DateTimeKind.Local).AddTicks(7841),
+                            CreatedDate = new DateTime(2022, 4, 25, 4, 19, 22, 252, DateTimeKind.Local).AddTicks(376),
+                            CustomerTypeId = 2,
                             Email = "seftali@gmail.com",
                             IsActive = true,
                             LastName = "ŞEFTALİ",
@@ -152,7 +144,8 @@ namespace NLayer.Repository.Migrations
                         new
                         {
                             Id = 3,
-                            CreatedDate = new DateTime(2022, 4, 24, 18, 35, 57, 680, DateTimeKind.Local).AddTicks(7843),
+                            CreatedDate = new DateTime(2022, 4, 25, 4, 19, 22, 252, DateTimeKind.Local).AddTicks(377),
+                            CustomerTypeId = 3,
                             Email = "seftali@gmail.com",
                             IsActive = true,
                             LastName = "ŞEFTALİ",
@@ -161,38 +154,12 @@ namespace NLayer.Repository.Migrations
                         new
                         {
                             Id = 4,
-                            CreatedDate = new DateTime(2022, 4, 24, 18, 35, 57, 680, DateTimeKind.Local).AddTicks(7843),
+                            CreatedDate = new DateTime(2022, 4, 25, 4, 19, 22, 252, DateTimeKind.Local).AddTicks(378),
+                            CustomerTypeId = 4,
                             Email = "seftali@gmail.com",
                             IsActive = true,
                             LastName = "ŞEFTALİ",
                             Name = "Ekrem"
-                        },
-                        new
-                        {
-                            Id = 6,
-                            CreatedDate = new DateTime(2022, 4, 24, 18, 35, 57, 680, DateTimeKind.Local).AddTicks(7844),
-                            Email = "seftali@gmail.com",
-                            IsActive = true,
-                            LastName = "ŞEFTALİ",
-                            Name = "Elif"
-                        },
-                        new
-                        {
-                            Id = 7,
-                            CreatedDate = new DateTime(2022, 4, 24, 18, 35, 57, 680, DateTimeKind.Local).AddTicks(7845),
-                            Email = "seftali@gmail.com",
-                            IsActive = true,
-                            LastName = "ŞEFTALİ",
-                            Name = "Şeyma"
-                        },
-                        new
-                        {
-                            Id = 5,
-                            CreatedDate = new DateTime(2022, 4, 24, 18, 35, 57, 680, DateTimeKind.Local).AddTicks(7846),
-                            Email = "seftali@gmail.com",
-                            IsActive = true,
-                            LastName = "ŞEFTALİ",
-                            Name = "Ömer"
                         });
                 });
 
@@ -226,28 +193,28 @@ namespace NLayer.Repository.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedDate = new DateTime(2022, 4, 24, 18, 35, 57, 680, DateTimeKind.Local).AddTicks(7976),
+                            CreatedDate = new DateTime(2022, 4, 25, 4, 19, 22, 252, DateTimeKind.Local).AddTicks(523),
                             IsActive = true,
                             Name = "Employee"
                         },
                         new
                         {
                             Id = 2,
-                            CreatedDate = new DateTime(2022, 4, 24, 18, 35, 57, 680, DateTimeKind.Local).AddTicks(7978),
+                            CreatedDate = new DateTime(2022, 4, 25, 4, 19, 22, 252, DateTimeKind.Local).AddTicks(528),
                             IsActive = true,
                             Name = "Affiliate"
                         },
                         new
                         {
                             Id = 3,
-                            CreatedDate = new DateTime(2022, 4, 24, 18, 35, 57, 680, DateTimeKind.Local).AddTicks(7979),
+                            CreatedDate = new DateTime(2022, 4, 25, 4, 19, 22, 252, DateTimeKind.Local).AddTicks(529),
                             IsActive = true,
                             Name = "Customer"
                         },
                         new
                         {
                             Id = 4,
-                            CreatedDate = new DateTime(2022, 4, 24, 18, 35, 57, 680, DateTimeKind.Local).AddTicks(7980),
+                            CreatedDate = new DateTime(2022, 4, 25, 4, 19, 22, 252, DateTimeKind.Local).AddTicks(530),
                             IsActive = true,
                             Name = "Other"
                         });
@@ -290,7 +257,7 @@ namespace NLayer.Repository.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedDate = new DateTime(2022, 4, 24, 18, 35, 57, 680, DateTimeKind.Local).AddTicks(8112),
+                            CreatedDate = new DateTime(2022, 4, 25, 4, 19, 22, 252, DateTimeKind.Local).AddTicks(744),
                             CustomerTypeId = 1,
                             IsActive = true,
                             Name = "Percentage Discount",
@@ -299,7 +266,7 @@ namespace NLayer.Repository.Migrations
                         new
                         {
                             Id = 2,
-                            CreatedDate = new DateTime(2022, 4, 24, 18, 35, 57, 680, DateTimeKind.Local).AddTicks(8113),
+                            CreatedDate = new DateTime(2022, 4, 25, 4, 19, 22, 252, DateTimeKind.Local).AddTicks(746),
                             CustomerTypeId = 4,
                             IsActive = true,
                             Name = "Flat Discount",
@@ -308,7 +275,7 @@ namespace NLayer.Repository.Migrations
                         new
                         {
                             Id = 3,
-                            CreatedDate = new DateTime(2022, 4, 24, 18, 35, 57, 680, DateTimeKind.Local).AddTicks(8114),
+                            CreatedDate = new DateTime(2022, 4, 25, 4, 19, 22, 252, DateTimeKind.Local).AddTicks(747),
                             CustomerTypeId = 3,
                             IsActive = true,
                             Name = "Percentage Discount",
@@ -317,7 +284,7 @@ namespace NLayer.Repository.Migrations
                         new
                         {
                             Id = 4,
-                            CreatedDate = new DateTime(2022, 4, 24, 18, 35, 57, 680, DateTimeKind.Local).AddTicks(8114),
+                            CreatedDate = new DateTime(2022, 4, 25, 4, 19, 22, 252, DateTimeKind.Local).AddTicks(748),
                             CustomerTypeId = 2,
                             IsActive = true,
                             Name = "Percentage Discount",
@@ -362,7 +329,7 @@ namespace NLayer.Repository.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedDate = new DateTime(2022, 4, 24, 18, 35, 57, 680, DateTimeKind.Local).AddTicks(8405),
+                            CreatedDate = new DateTime(2022, 4, 25, 4, 19, 22, 252, DateTimeKind.Local).AddTicks(1009),
                             CustomerId = 1,
                             IsActive = true,
                             OrderId = 1
@@ -370,7 +337,7 @@ namespace NLayer.Repository.Migrations
                         new
                         {
                             Id = 2,
-                            CreatedDate = new DateTime(2022, 4, 24, 18, 35, 57, 680, DateTimeKind.Local).AddTicks(8406),
+                            CreatedDate = new DateTime(2022, 4, 25, 4, 19, 22, 252, DateTimeKind.Local).AddTicks(1010),
                             CustomerId = 2,
                             IsActive = true,
                             OrderId = 2
@@ -378,7 +345,7 @@ namespace NLayer.Repository.Migrations
                         new
                         {
                             Id = 3,
-                            CreatedDate = new DateTime(2022, 4, 24, 18, 35, 57, 680, DateTimeKind.Local).AddTicks(8407),
+                            CreatedDate = new DateTime(2022, 4, 25, 4, 19, 22, 252, DateTimeKind.Local).AddTicks(1011),
                             CustomerId = 3,
                             IsActive = true,
                             OrderId = 3
@@ -386,7 +353,7 @@ namespace NLayer.Repository.Migrations
                         new
                         {
                             Id = 4,
-                            CreatedDate = new DateTime(2022, 4, 24, 18, 35, 57, 680, DateTimeKind.Local).AddTicks(8407),
+                            CreatedDate = new DateTime(2022, 4, 25, 4, 19, 22, 252, DateTimeKind.Local).AddTicks(1012),
                             CustomerId = 4,
                             IsActive = true,
                             OrderId = 4
@@ -436,7 +403,7 @@ namespace NLayer.Repository.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedDate = new DateTime(2022, 4, 24, 18, 35, 57, 680, DateTimeKind.Local).AddTicks(8237),
+                            CreatedDate = new DateTime(2022, 4, 25, 4, 19, 22, 252, DateTimeKind.Local).AddTicks(881),
                             DiscountId = 1,
                             InvoiceId = 1,
                             IsActive = true,
@@ -446,7 +413,7 @@ namespace NLayer.Repository.Migrations
                         new
                         {
                             Id = 2,
-                            CreatedDate = new DateTime(2022, 4, 24, 18, 35, 57, 680, DateTimeKind.Local).AddTicks(8239),
+                            CreatedDate = new DateTime(2022, 4, 25, 4, 19, 22, 252, DateTimeKind.Local).AddTicks(882),
                             DiscountId = 2,
                             InvoiceId = 2,
                             IsActive = true,
@@ -456,7 +423,7 @@ namespace NLayer.Repository.Migrations
                         new
                         {
                             Id = 3,
-                            CreatedDate = new DateTime(2022, 4, 24, 18, 35, 57, 680, DateTimeKind.Local).AddTicks(8240),
+                            CreatedDate = new DateTime(2022, 4, 25, 4, 19, 22, 252, DateTimeKind.Local).AddTicks(883),
                             DiscountId = 3,
                             InvoiceId = 3,
                             IsActive = true,
@@ -466,7 +433,7 @@ namespace NLayer.Repository.Migrations
                         new
                         {
                             Id = 4,
-                            CreatedDate = new DateTime(2022, 4, 24, 18, 35, 57, 680, DateTimeKind.Local).AddTicks(8241),
+                            CreatedDate = new DateTime(2022, 4, 25, 4, 19, 22, 252, DateTimeKind.Local).AddTicks(884),
                             DiscountId = 4,
                             InvoiceId = 4,
                             IsActive = true,
@@ -512,7 +479,7 @@ namespace NLayer.Repository.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedDate = new DateTime(2022, 4, 24, 18, 35, 57, 680, DateTimeKind.Local).AddTicks(8677),
+                            CreatedDate = new DateTime(2022, 4, 25, 4, 19, 22, 252, DateTimeKind.Local).AddTicks(1259),
                             CustomerId = 1,
                             IsActive = true,
                             Status = 1,
@@ -521,7 +488,7 @@ namespace NLayer.Repository.Migrations
                         new
                         {
                             Id = 2,
-                            CreatedDate = new DateTime(2022, 4, 24, 18, 35, 57, 680, DateTimeKind.Local).AddTicks(8681),
+                            CreatedDate = new DateTime(2022, 4, 25, 4, 19, 22, 252, DateTimeKind.Local).AddTicks(1310),
                             CustomerId = 2,
                             IsActive = true,
                             Status = 1,
@@ -530,7 +497,7 @@ namespace NLayer.Repository.Migrations
                         new
                         {
                             Id = 3,
-                            CreatedDate = new DateTime(2022, 4, 24, 18, 35, 57, 680, DateTimeKind.Local).AddTicks(8682),
+                            CreatedDate = new DateTime(2022, 4, 25, 4, 19, 22, 252, DateTimeKind.Local).AddTicks(1311),
                             CustomerId = 3,
                             IsActive = true,
                             Status = 1,
@@ -539,7 +506,7 @@ namespace NLayer.Repository.Migrations
                         new
                         {
                             Id = 4,
-                            CreatedDate = new DateTime(2022, 4, 24, 18, 35, 57, 680, DateTimeKind.Local).AddTicks(8683),
+                            CreatedDate = new DateTime(2022, 4, 25, 4, 19, 22, 252, DateTimeKind.Local).AddTicks(1312),
                             CustomerId = 4,
                             IsActive = true,
                             Status = 1,
@@ -572,7 +539,7 @@ namespace NLayer.Repository.Migrations
                     b.HasIndex("ProductId")
                         .IsUnique();
 
-                    b.ToTable("OrderDetail");
+                    b.ToTable("OrderDetails");
 
                     b.HasData(
                         new
@@ -647,7 +614,7 @@ namespace NLayer.Repository.Migrations
                         {
                             Id = 1,
                             CategoryId = 1,
-                            CreatedDate = new DateTime(2022, 4, 24, 18, 35, 57, 680, DateTimeKind.Local).AddTicks(8800),
+                            CreatedDate = new DateTime(2022, 4, 25, 4, 19, 22, 252, DateTimeKind.Local).AddTicks(1443),
                             IsActive = true,
                             Name = "Kalem 1",
                             Price = 100m,
@@ -657,7 +624,7 @@ namespace NLayer.Repository.Migrations
                         {
                             Id = 2,
                             CategoryId = 1,
-                            CreatedDate = new DateTime(2022, 4, 24, 18, 35, 57, 680, DateTimeKind.Local).AddTicks(8802),
+                            CreatedDate = new DateTime(2022, 4, 25, 4, 19, 22, 252, DateTimeKind.Local).AddTicks(1445),
                             IsActive = true,
                             Name = "Fabel Castel Pencil",
                             Price = 200m,
@@ -667,7 +634,7 @@ namespace NLayer.Repository.Migrations
                         {
                             Id = 3,
                             CategoryId = 1,
-                            CreatedDate = new DateTime(2022, 4, 24, 18, 35, 57, 680, DateTimeKind.Local).AddTicks(8802),
+                            CreatedDate = new DateTime(2022, 4, 25, 4, 19, 22, 252, DateTimeKind.Local).AddTicks(1446),
                             IsActive = true,
                             Name = "Rotring Pencil",
                             Price = 600m,
@@ -677,7 +644,7 @@ namespace NLayer.Repository.Migrations
                         {
                             Id = 4,
                             CategoryId = 2,
-                            CreatedDate = new DateTime(2022, 4, 24, 18, 35, 57, 680, DateTimeKind.Local).AddTicks(8803),
+                            CreatedDate = new DateTime(2022, 4, 25, 4, 19, 22, 252, DateTimeKind.Local).AddTicks(1447),
                             IsActive = true,
                             Name = "Pc",
                             Price = 600m,
@@ -687,7 +654,7 @@ namespace NLayer.Repository.Migrations
                         {
                             Id = 6,
                             CategoryId = 4,
-                            CreatedDate = new DateTime(2022, 4, 24, 18, 35, 57, 680, DateTimeKind.Local).AddTicks(8807),
+                            CreatedDate = new DateTime(2022, 4, 25, 4, 19, 22, 252, DateTimeKind.Local).AddTicks(1448),
                             IsActive = true,
                             Name = "Pasta",
                             Price = 50m,
@@ -697,7 +664,7 @@ namespace NLayer.Repository.Migrations
                         {
                             Id = 7,
                             CategoryId = 4,
-                            CreatedDate = new DateTime(2022, 4, 24, 18, 35, 57, 680, DateTimeKind.Local).AddTicks(8808),
+                            CreatedDate = new DateTime(2022, 4, 25, 4, 19, 22, 252, DateTimeKind.Local).AddTicks(1449),
                             IsActive = true,
                             Name = "Meet",
                             Price = 100m,
@@ -707,7 +674,7 @@ namespace NLayer.Repository.Migrations
                         {
                             Id = 5,
                             CategoryId = 2,
-                            CreatedDate = new DateTime(2022, 4, 24, 18, 35, 57, 680, DateTimeKind.Local).AddTicks(8809),
+                            CreatedDate = new DateTime(2022, 4, 25, 4, 19, 22, 252, DateTimeKind.Local).AddTicks(1450),
                             IsActive = true,
                             Name = "Phone",
                             Price = 6600m,
@@ -761,19 +728,15 @@ namespace NLayer.Repository.Migrations
                         });
                 });
 
-            modelBuilder.Entity("CustomerCustomerType", b =>
+            modelBuilder.Entity("NLayer.Core.Models.Customer", b =>
                 {
-                    b.HasOne("NLayer.Core.Models.CustomerType", null)
-                        .WithMany()
-                        .HasForeignKey("CustomerTypesId")
+                    b.HasOne("NLayer.Core.Models.CustomerType", "CustomerType")
+                        .WithMany("Customers")
+                        .HasForeignKey("CustomerTypeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("NLayer.Core.Models.Customer", null)
-                        .WithMany()
-                        .HasForeignKey("CustomersId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.Navigation("CustomerType");
                 });
 
             modelBuilder.Entity("NLayer.Core.Models.Discount", b =>
@@ -817,7 +780,7 @@ namespace NLayer.Repository.Migrations
                     b.HasOne("NLayer.Core.Models.Invoice", "Invoice")
                         .WithOne("InvoiceDetail")
                         .HasForeignKey("NLayer.Core.Models.InvoiceDetail", "InvoiceId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.Navigation("Discount");
@@ -891,6 +854,8 @@ namespace NLayer.Repository.Migrations
 
             modelBuilder.Entity("NLayer.Core.Models.CustomerType", b =>
                 {
+                    b.Navigation("Customers");
+
                     b.Navigation("Discount");
                 });
 

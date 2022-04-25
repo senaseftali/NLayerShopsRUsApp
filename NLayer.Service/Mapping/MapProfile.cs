@@ -15,10 +15,13 @@ namespace NLayer.Service.Mapping
         {
             CreateMap<Product, ProductDto>().ReverseMap();
             CreateMap<Category, CategoryDto>().ReverseMap();
+            CreateMap<Discount, DiscountDto>().ReverseMap();
+            CreateMap<Order, OrderDto>().ReverseMap();
+            //CreateMap<Invoice, InvoiceDto>().ReverseMap();
             CreateMap<ProductFeature, ProductFeatureDto>().ReverseMap();
-            //CreateMap<ProductUpdateDto, Product>();
-            //CreateMap<Product, ProductWithCategoryDto>();
-            //CreateMap<Category, CategoryWithProductsDto>();
+            CreateMap<ProductUpdateDto, Product>();
+            CreateMap<Product, ProductWithCategoryDto>();
+            CreateMap<Category, CategoryWithProductsDto>();
         }
     }
 }

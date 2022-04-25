@@ -11,6 +11,6 @@ namespace NLayer.Core.Repositories
 {
     public interface IDiscountRepository : IGenericRepository<Discount>
     {
-        InvoiceDto GetOrderWithCustomer(Order orderWithCustomerDto);
+          Task<InvoiceDto> GetOrderWithCustomer(OrderWithCustomerDto orderWithCustomerDto);
     }
 }

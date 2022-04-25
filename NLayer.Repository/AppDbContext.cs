@@ -21,8 +21,9 @@ namespace NLayer.Repository
         public DbSet<Order> Orders { get; set; }
         public DbSet<OrderDetail> OrderDetails { get; set; }
         public DbSet<Customer> Customers { get; set; }
+        public DbSet<Invoice> Invoices { get; set; }
         public DbSet<CustomerType> CustomerTypes { get; set; }
-        public DbSet<CustomerCustomerType> CustomerCustomerTypes { get; set; }
+        //public DbSet<CustomerCustomerType> CustomerCustomerTypes { get; set; }
 
         public DbSet<Product> Products { get; set; }
 

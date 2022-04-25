@@ -22,7 +22,9 @@ namespace NLayer.Repository.Configurations
 
             builder.ToTable("Customers");
 
-            builder.HasMany(x => x.CustomerTypes).WithMany(x => x.Customers);
+            builder.HasOne(x => x.CustomerType).WithMany(x => x.Customers).HasForeignKey(x => x.CustomerTypeId);
+            //builder.HasOne(x => x.CustomerType).WithOne(x => x.Customer).HasForeignKey<Customer>(x => x.CustomerTypeId).OnDelete(DeleteBehavior.NoAction) ;
+            //builder.HasMany(x => x.CustomerTypes).WithMany(x => x.Customers);
         }
     }
 }

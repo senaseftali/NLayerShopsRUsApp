@@ -8,6 +8,6 @@ namespace NLayer.Core.Services
 {
     public interface ICampaignFactory
     {
-        ICampaign CreateObj();
+    
     }
 }

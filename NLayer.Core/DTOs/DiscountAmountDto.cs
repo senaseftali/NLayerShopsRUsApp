@@ -7,14 +7,18 @@ using System.Threading.Tasks;
 
 namespace NLayer.Core.DTOs
 {
-    public class DiscountAmountDto : ICampaign
+    public class DiscountAmountDto : ICampaignFactory
     {
-        public string CampaignName { get { return "Amount"; } }
 
-        public ICampaign CreateObj()
+        public DiscountAmountDto(InvoiceDto invoiceDto)
         {
-            return new DiscountAmountDto();
+            invoiceDto.DiscountAmount = invoiceDto.TotalAmount * invoiceDto.Rate / 100;
+            invoiceDto.Amount = invoiceDto.TotalAmount - invoiceDto.DiscountAmount;
         }
 
     }
+
+      
+
+    
 }
